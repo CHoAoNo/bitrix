@@ -2,7 +2,7 @@
 $aMenuLinks = Array(
 	Array(
 		"О компании", 
-		"./", 
+		"index.php", 
 		Array(), 
 		Array(), 
 		"" 
@@ -37,7 +37,7 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Отзывы", 
-		"/company/reviews/", 
+		"reviews/", 
 		Array(), 
 		Array(), 
 		"" 

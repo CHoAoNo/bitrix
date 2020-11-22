@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Гарнитуры";
+$arDirProperties = Array(
+
+);
+?>
