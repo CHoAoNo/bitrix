@@ -4,7 +4,7 @@ $aMenuLinks = Array(
 		"", 
 		"/index.php", 
 		Array(), 
-		Array("IMG"=>"/bitrix/templates/.default/images/nv_home.png"), 
+		Array("IMG"=>"/local/templates/.default/images/nv_home.png"), 
 		"" 
 	),
 	Array(
