@@ -12,7 +12,6 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-
 <div class="sb_action">
 
 	<a href="<?=$arResult["ITEMS"][0]['DETAIL_PAGE_URL']?>"><img src="<?=$arResult["ITEMS"][0]["PREVIEW_PICTURE"]["SRC"]?>" alt=""/></a>

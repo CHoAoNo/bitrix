@@ -36,7 +36,7 @@ IncludeTemplateLangFile(__FILE__);
 		"START_FROM" => "0"
 	)
 );?>
-		
+
 		<div class="main_container page">
 			<div class="mn_container">
 				<div class="mn_content">

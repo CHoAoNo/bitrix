@@ -6,7 +6,7 @@ IncludeTemplateLangFile(__FILE__);
 				<table>
 					<tr>
 						<td rowspan="2" class="hd_companyname">
-							<h1><a href="">Мебельный магазин</a></h1>
+							<h1><a href="/">Мебельный магазин</a></h1>
 						</td>
 						<td rowspan="2" class="hd_txarea">
 							<span class="tel"><?$APPLICATION->IncludeComponent(

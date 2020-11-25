@@ -12,17 +12,11 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-
-<div class="cn_hp_lastnews">
-<h3><a href="/news/"><?=GetMessage('NEWS');?></a></h3>		
-<ul>
-	<?foreach($arResult["ITEMS"] as $arItem):?>
-		<li>
-			<h4><a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?echo $arItem["DISPLAY_ACTIVE_FROM"]?></a></h4>
-			<p><?echo $arItem["PREVIEW_TEXT"]?></p>
-		</li>
-	<?endforeach;?>	
-</ul>
-<br/>
-<a href="/news/" class="cn_hp_lastnews_more"><?=GetMessage('ALL_NEWS');?></a>
+<?foreach($arResult["ITEMS"] as $arItem):?>
+<div class="ps_head"><a class="ps_head_link" href="<?=$arItem["DETAIL_PAGE_URL"]?>"><h2 class="ps_head_h"><?echo $arItem["NAME"]?></h2></a><span class="ps_date"><?echo $arItem["DISPLAY_ACTIVE_FROM"]?></span></div>
+<div class="ps_content">
+	<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" align="left" alt=""/> 
+	<?=$arItem["PREVIEW_TEXT"]?>
+	<div style="clear:both"></div>
 </div>
+<?endforeach;?>

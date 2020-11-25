@@ -13,16 +13,7 @@
 $this->setFrameMode(true);
 ?>
 
-<div class="cn_hp_lastnews">
-<h3><a href="/news/"><?=GetMessage('NEWS');?></a></h3>		
-<ul>
-	<?foreach($arResult["ITEMS"] as $arItem):?>
-		<li>
-			<h4><a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?echo $arItem["DISPLAY_ACTIVE_FROM"]?></a></h4>
-			<p><?echo $arItem["PREVIEW_TEXT"]?></p>
-		</li>
-	<?endforeach;?>	
-</ul>
-<br/>
-<a href="/news/" class="cn_hp_lastnews_more"><?=GetMessage('ALL_NEWS');?></a>
-</div>
+	<?if(is_array($arResult["DETAIL_PICTURE"])):?>
+		<img src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>" align="left" alt=""/> 
+	<?endif;?>
+	<?echo $arResult["DETAIL_TEXT"];?>
