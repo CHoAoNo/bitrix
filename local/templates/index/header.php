@@ -251,9 +251,9 @@ IncludeTemplateLangFile(__FILE__);
 		</script>
 	
 		<?$APPLICATION->IncludeComponent(
-	"bitrix:news.list",
-	"slider_reviews",
-	Array(
+	"bitrix:news.list", 
+	"slider_reviews", 
+	array(
 		"ACTIVE_DATE_FORMAT" => "j F Y",
 		"ADD_SECTIONS_CHAIN" => "N",
 		"AJAX_MODE" => "N",
@@ -274,7 +274,10 @@ IncludeTemplateLangFile(__FILE__);
 		"DISPLAY_PICTURE" => "N",
 		"DISPLAY_PREVIEW_TEXT" => "N",
 		"DISPLAY_TOP_PAGER" => "N",
-		"FIELD_CODE" => array(0=>"",1=>"",),
+		"FIELD_CODE" => array(
+			0 => "",
+			1 => "",
+		),
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "4",
@@ -292,8 +295,12 @@ IncludeTemplateLangFile(__FILE__);
 		"PAGER_TITLE" => "Новости",
 		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
-		"PREVIEW_TRUNCATE_LEN" => "",
-		"PROPERTY_CODE" => array(0=>"POSITION",1=>"COMPANY_NAME",2=>"",),
+		"PREVIEW_TRUNCATE_LEN" => "150",
+		"PROPERTY_CODE" => array(
+			0 => "POSITION",
+			1 => "COMPANY_NAME",
+			2 => "",
+		),
 		"SET_BROWSER_TITLE" => "N",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_META_DESCRIPTION" => "N",
@@ -306,5 +313,6 @@ IncludeTemplateLangFile(__FILE__);
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N"
-	)
+	),
+	false
 );?>

@@ -30,7 +30,11 @@ $this->setFrameMode(true);
 <div class="sl_slider" id="slides">
 	<div class="slides_container">
 		<?foreach($arResult["ITEMS"] as $arItem):?>
-			<div>
+		<?
+			$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
+			$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+		?>
+			<div id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 				<div>
 				<? if(is_array($arItem["PREVIEW_PICTURE"])):?>
 					<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="" />

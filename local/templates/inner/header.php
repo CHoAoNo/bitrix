@@ -7,7 +7,7 @@ IncludeTemplateLangFile(__FILE__);
 <head>
 	<?$APPLICATION->ShowHead();?>
 	<title><?$APPLICATION->ShowTitle()?></title>
-	<?$APPLICATION->SetAdditionalCSS("/local/templates/.default/template_style.css", true);?>
+	<?$APPLICATION->SetAdditionalCSS("/local/templates/.default/template_style.css");?>
 	
 	<?$APPLICATION->AddHeadScript("/local/templates/.default/js/jquery-1.8.2.min.js");?>
 	<?$APPLICATION->AddHeadScript("/local/templates/.default/js/functions.js" );?>

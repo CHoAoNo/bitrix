@@ -18,7 +18,11 @@ $this->setFrameMode(true);
 		<h4>Отзывы</h4>
 		<ul id="foo">
 			<?foreach($arResult["ITEMS"] as $arItem):?>
-				<li>
+			<?
+				$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
+				$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+			?>
+				<li id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 					<div class="rw_message">
 						<? if(is_array($arItem["PREVIEW_PICTURE"])):?>
 							<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" class="rw_avatar" alt=""/>
@@ -34,6 +38,6 @@ $this->setFrameMode(true);
 		</ul>
 		<div id="rwprev"></div>
 		<div id="rwnext"></div>
-		<a href="/reviews/" class="rw_allreviewed">Все отзывы</a>
+		<a href="/company/reviews/" class="rw_allreviewed">Все отзывы</a>
 	</div>
 </div>
