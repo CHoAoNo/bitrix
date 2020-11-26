@@ -1,6 +1,13 @@
 <?
 $aMenuLinks = Array(
 	Array(
+		"", 
+		"/index.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
 		"Компания", 
 		"company/", 
 		Array(), 
@@ -29,13 +36,6 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Контакты", 
-		"contacts/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"Акции", 
 		"offers", 
 		Array(), 
@@ -45,6 +45,13 @@ $aMenuLinks = Array(
 	Array(
 		"Партнерам", 
 		"/partners/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"contacts/", 
 		Array(), 
 		Array(), 
 		"" 
