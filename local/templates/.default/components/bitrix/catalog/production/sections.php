@@ -15,6 +15,12 @@
 $this->setFrameMode(true);
 $this->addExternalCss("/bitrix/css/main/bootstrap.css");
 
+?><h1><?$APPLICATION->ShowViewContent('top');?></h1>
+<br/>
+<br/>
+<?
+
+
 $sectionListParams = array(
 	"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 	"IBLOCK_ID" => $arParams["IBLOCK_ID"],
