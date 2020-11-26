@@ -1,4 +1,6 @@
 <?
+$PERM["admin"]["*"]="D";
+$PERM["admin"]["G1"]="X";
 $PERM["search"]["6"]="W";
 $PERM["products"]["6"]="W";
 $PERM["services"]["6"]="W";

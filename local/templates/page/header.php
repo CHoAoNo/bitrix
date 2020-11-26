@@ -6,7 +6,9 @@ IncludeTemplateLangFile(__FILE__);
 <html lang="<?=LANGUAGE_ID;?>-<?=strtoupper(LANGUAGE_ID);?>">
 <head>
 	<?$APPLICATION->ShowHead();?>
-	<title><?$APPLICATION->ShowTitle()?></title>
+	<title><?=GetMessage('TITLE')?></title>
+	<meta name="keywords" content="<?=GetMessage('KEYWORDS')?>">
+	<meta name="description" content="<?=GetMessage('DESCRIPTION')?>">
 	<?$APPLICATION->SetAdditionalCSS("/local/templates/.default/template_style.css");?>
 	
 	<?$APPLICATION->AddHeadScript("/local/templates/.default/js/jquery-1.8.2.min.js");?>

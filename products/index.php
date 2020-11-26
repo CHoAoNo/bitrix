@@ -1,11 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Продукция");
-?><?$APPLICATION->IncludeComponent(
-	"bitrix:catalog", 
-	"production", 
-	array(
-		"ACTION_VARIABLE" => "action",
+?><?$APPLICATION->IncludeComponent("bitrix:catalog", "production", array(
+	"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_PICT_PROP" => "-",
 		"ADD_PROPERTIES_TO_BASKET" => "Y",
@@ -58,8 +55,7 @@ $APPLICATION->SetTitle("Продукция");
 		),
 		"FILTER_HIDE_ON_MOBILE" => "N",
 		"FILTER_NAME" => "",
-		"FILTER_PRICE_CODE" => array(
-		),
+		"FILTER_PRICE_CODE" => "",
 		"FILTER_PROPERTY_CODE" => array(
 			0 => "MATERIAL",
 			1 => "AVAILABILITY",
@@ -72,8 +68,7 @@ $APPLICATION->SetTitle("Продукция");
 		"IBLOCK_TYPE" => "products",
 		"INCLUDE_SUBSECTIONS" => "Y",
 		"INSTANT_RELOAD" => "N",
-		"LABEL_PROP" => array(
-		),
+		"LABEL_PROP" => "",
 		"LAZY_LOAD" => "N",
 		"LINE_ELEMENT_COUNT" => "3",
 		"LINK_ELEMENTS_URL" => "link.php?PARENT_ELEMENT_ID=#ELEMENT_ID#",
@@ -106,8 +101,7 @@ $APPLICATION->SetTitle("Продукция");
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "30",
 		"PARTIAL_PRODUCT_PROPERTIES" => "N",
-		"PRICE_CODE" => array(
-		),
+		"PRICE_CODE" => "",
 		"PRICE_VAT_INCLUDE" => "Y",
 		"PRICE_VAT_SHOW_VALUE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
@@ -168,5 +162,8 @@ $APPLICATION->SetTitle("Продукция");
 			"SECTION_ID" => "SECTION_ID",
 		)
 	),
-	false
+	false,
+	array(
+	"ACTIVE_COMPONENT" => "N"
+	)
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
