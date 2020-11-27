@@ -3,7 +3,7 @@
 IncludeTemplateLangFile(__FILE__);
 ?>
 <!-- workarea -->
-<p>Блять</p>
+<p></p>
 
 
 		

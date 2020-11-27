@@ -13,7 +13,6 @@
 $this->setFrameMode(true);
 ?>
 
-
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>
 	<?=$arResult["NAV_STRING"]?><br />
 <?endif;?>
@@ -67,5 +66,6 @@ $this->setFrameMode(true);
 function change_visibility (block_4_close, block_4_open) {
     document.getElementById(block_4_close).style.display='none';
     document.getElementById(block_4_open).style.display='';
+		event.preventDefault();
 }
 </script>

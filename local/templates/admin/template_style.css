@@ -132,8 +132,16 @@ margin-top: 20px;
 	margin: 0 auto;
 	width: 80%;
 	background-color: white;
+	min-height: 100px;
 }
 
 .news-item{
 	margin: 20px 0;
+}
+
+.bx-newsdetail{
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+	padding-top: 20px;
 }
