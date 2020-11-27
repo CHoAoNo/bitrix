@@ -1,29 +1,15 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"1", 
-		"/", 
+		"Начальная", 
+		"index.php", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
-		"2", 
-		"/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"3", 
-		"/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"4", 
-		"/", 
+		"Инфоблоки", 
+		"iblock/", 
 		Array(), 
 		Array(), 
 		"" 

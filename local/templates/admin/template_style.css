@@ -3,7 +3,8 @@
 	margin:0;
 }
 
-body{font-family:Arial,Helvetica,sans-serif}
+body{font-family:Arial,Helvetica,sans-serif;
+background-color: #e3e3e3;}
 input{outline:none !important}
 
 
@@ -119,4 +120,20 @@ justify-content: space-around;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #e3e3e3;
+}
+
+.auth-form{
+	width: 240px;
+float: right;
+margin-top: 20px;
+}
+
+.news-list{
+	margin: 0 auto;
+	width: 80%;
+	background-color: white;
+}
+
+.news-item{
+	margin: 20px 0;
 }
