@@ -12,6 +12,8 @@ IncludeTemplateLangFile(__FILE__);
 <?$APPLICATION->AddHeadScript("/local/templates/.default/js/jquery-1.8.2.min.js");?>
 <?$APPLICATION->AddHeadScript("/local/templates/.default/js/functions.js" );?>
 
+<?$APPLICATION->AddHeadScript("/local/templates/.default/js/list.min.js" );?>
+
 
 </head>
 <body>

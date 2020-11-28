@@ -4,9 +4,12 @@
 }
 
 body{font-family:Arial,Helvetica,sans-serif;
-background-color: #e3e3e3;}
+background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjNDAzYzNmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTI5MmQiPjwvcGF0aD4KPC9zdmc+");}
 input{outline:none !important}
 
+#horizontal-multilevel-menu, #horizontal-multilevel-menu ul {
+    font-size: 15px;
+}
 
 .hd_sing{position:relative}
 .hd_sing{
@@ -120,12 +123,22 @@ justify-content: space-around;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #e3e3e3;
+	padding: 20px;
+}
+
+.bx-auth-serv-icons{
+	margin: 0 auto;
+	max-width: 600px;
 }
 
 .auth-form{
 	width: 240px;
 float: right;
 margin-top: 20px;
+}
+
+.navigation{
+	padding: 30px;
 }
 
 .news-list{
@@ -144,4 +157,75 @@ margin-top: 20px;
 	margin: 0 auto;
 	background-color: white;
 	padding-top: 20px;
+}
+
+#users input, #users button{
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	padding: 7px 14px;
+	margin-bottom: 10px;
+}
+
+#users input.search{
+	float: left;
+	margin-top: 58px;
+}
+
+#users button:hover{
+	background-color: gainsboro;
+}
+
+#users button:hover{
+	background-color: white;
+}
+
+.filter-wrap{
+	float: right;
+	background-color: gainsboro;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	padding: 7px 14px;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.filter-wrap p{
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.filter-wrap label{
+	background-color: gainsboro;
+}
+
+#from-date{
+	margin-right: 15px;
+}
+
+#users{
+	width: 80%;
+	margin: 0 auto 50px;
+}
+
+table.allusers{
+	background-color: #e3e3e3;
+}
+
+#users table{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
+#users table th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
+#users table td{font-size:13px;color:#354251;}
+#users table td, #users table th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	
+#users table tr:hover{background-color:#f9fafb}
+users table tr:hover td{color:#354251;cursor:default;}
+
+
+.profile{
+	background-color: gainsboro;
+	max-width: 600px;
+	margin: 0 auto 50px;
+	padding: 20px;
+}
+.profile ul li{
+	list-style: none;
+	font-size: 20px;
+	padding: 10px;
 }
