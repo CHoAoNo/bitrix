@@ -34,7 +34,7 @@ if ($isFilter)
 	if (0 < intval($arResult["VARIABLES"]["SECTION_ID"]))
 		$arFilter["ID"] = $arResult["VARIABLES"]["SECTION_ID"];
 	elseif ('' != $arResult["VARIABLES"]["SECTION_CODE"])
-		$arFilter["=CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
+		$arFilter["CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
 
 	$obCache = new CPHPCache();
 	if ($obCache->InitCache(36000, serialize($arFilter), "/iblock/catalog"))

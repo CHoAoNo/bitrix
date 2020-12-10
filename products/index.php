@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Продукция");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	"production", 
+	".default", 
 	array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "N",
@@ -21,7 +21,7 @@ $APPLICATION->SetTitle("Продукция");
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"COMPATIBLE_MODE" => "Y",
-		"COMPONENT_TEMPLATE" => "production",
+		"COMPONENT_TEMPLATE" => ".default",
 		"DETAIL_ADD_DETAIL_TO_SLIDER" => "N",
 		"DETAIL_BACKGROUND_IMAGE" => "-",
 		"DETAIL_BRAND_USE" => "N",
@@ -53,21 +53,24 @@ $APPLICATION->SetTitle("Продукция");
 		"ELEMENT_SORT_ORDER" => "asc",
 		"ELEMENT_SORT_ORDER2" => "desc",
 		"FILTER_FIELD_CODE" => array(
-			0 => "",
-			1 => "",
+			0 => "CODE",
+			1 => "XML_ID",
+			2 => "NAME",
+			3 => "",
 		),
 		"FILTER_HIDE_ON_MOBILE" => "N",
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "Afdsa",
 		"FILTER_PRICE_CODE" => array(
 		),
 		"FILTER_PROPERTY_CODE" => array(
-			0 => "MATERIAL",
-			1 => "AVAILABILITY",
-			2 => "MANUFACTURER",
-			3 => "PRICE",
-			4 => "",
+			0 => "CODE",
+			1 => "MATERIAL",
+			2 => "AVAILABILITY",
+			3 => "MANUFACTURER",
+			4 => "PRICE",
+			5 => "",
 		),
-		"FILTER_VIEW_MODE" => "VERTICAL",
+		"FILTER_VIEW_MODE" => "HORIZONTAL",
 		"IBLOCK_ID" => "6",
 		"IBLOCK_TYPE" => "products",
 		"INCLUDE_SUBSECTIONS" => "Y",
@@ -125,7 +128,7 @@ $APPLICATION->SetTitle("Продукция");
 		"SECTION_ID_VARIABLE" => "SECTION_ID",
 		"SECTION_TOP_DEPTH" => "2",
 		"SEF_FOLDER" => "/products/",
-		"SEF_MODE" => "N",
+		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "Y",
@@ -163,9 +166,17 @@ $APPLICATION->SetTitle("Продукция");
 		"USE_PRODUCT_QUANTITY" => "N",
 		"USE_REVIEW" => "N",
 		"USE_STORE" => "N",
+		"SEF_URL_TEMPLATES" => array(
+			"sections" => "",
+			"section" => "#SECTION_CODE_PATH#/",
+			"element" => "#SECTION_CODE_PATH#/#ELEMENT_ID#/",
+			"compare" => "compare.php?action=#ACTION_CODE#",
+			"smart_filter" => "#SECTION_CODE_PATH#/filter/#SMART_FILTER_PATH#/apply/",
+		),
 		"VARIABLE_ALIASES" => array(
-			"ELEMENT_ID" => "ELEMENT_ID",
-			"SECTION_ID" => "SECTION_ID",
+			"compare" => array(
+				"ACTION_CODE" => "action",
+			),
 		)
 	),
 	false
