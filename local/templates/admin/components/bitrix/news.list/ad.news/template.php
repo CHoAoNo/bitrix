@@ -13,6 +13,8 @@
 $this->setFrameMode(true);
 ?>
 
+<div class="wrap-news-list">
+
 <?if($arParams["DISPLAY_TOP_PAGER"]):?>
 	<?=$arResult["NAV_STRING"]?><br />
 <?endif;?>
@@ -55,12 +57,14 @@ $this->setFrameMode(true);
 	<?++$count;?>
 	<?endforeach;?>
 	</ul>
+	
 </div>
 
 <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
 	<br /><?=$arResult["NAV_STRING"]?>
 <?endif;?>
 
+</div>
 
 <script type="text/javascript">
 function change_visibility (block_4_close, block_4_open) {
