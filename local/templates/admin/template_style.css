@@ -141,7 +141,9 @@ margin-top: 20px;
 	padding: 30px;
 }
 
-.news-list{
+.wrap-news-list,
+.news-list,
+.wrap-form {
 	margin: 0 auto;
 	width: 80%;
 	background-color: white;
@@ -159,7 +161,9 @@ margin-top: 20px;
 	padding-top: 20px;
 }
 
-#users input, #users button{
+#users input, 
+#users button,
+{
 	border: solid 1px #ccc;
 	border-radius: 5px;
 	padding: 7px 14px;
@@ -228,4 +232,20 @@ users table tr:hover td{color:#354251;cursor:default;}
 	list-style: none;
 	font-size: 20px;
 	padding: 10px;
+}
+
+.form-results-header-inline {
+	position: relative;
+	left: 42px;
+}
+
+.form-table tr th,
+.form-table tr td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+body{
+	background-color:white;
+	background-image: none;
 }
