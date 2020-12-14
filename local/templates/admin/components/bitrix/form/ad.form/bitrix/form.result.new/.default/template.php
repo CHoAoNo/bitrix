@@ -1,4 +1,4 @@
-<?
+<?	//комплексный
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 ?>
 <?if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?endif;?>
@@ -49,6 +49,9 @@ if ($arResult["isFormTitle"])
 						form questions
 ***********************************************************************************/
 ?>
+<p>
+	<?=$arResult["pager"]?>
+	</p>
 <table class="form-table data-table">
 	<thead>
 		<tr>
@@ -104,6 +107,9 @@ if($arResult["isUseCaptcha"] == "Y")
 		</tr>
 	</tfoot>
 </table>
+<p>
+	<?=$arResult["pager"]?>
+	</p>
 <p>
 <?=$arResult["REQUIRED_SIGN"];?> - <?=GetMessage("FORM_REQUIRED_FIELDS")?>
 </p>

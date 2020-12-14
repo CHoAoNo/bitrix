@@ -142,13 +142,18 @@ margin-top: 20px;
 }
 
 .wrap-news-list,
+.news-list {
+	background-color: white;
+}
+
+.wrap-news-list,
 .news-list,
 .wrap-form {
 	margin: 0 auto;
 	width: 80%;
-	background-color: white;
 	min-height: 100px;
 }
+
 
 .news-item{
 	margin: 20px 0;
@@ -162,7 +167,7 @@ margin-top: 20px;
 }
 
 #users input, 
-#users button,
+#users button
 {
 	border: solid 1px #ccc;
 	border-radius: 5px;
@@ -214,13 +219,16 @@ table.allusers{
 	background-color: #e3e3e3;
 }
 
-#users table{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
-#users table th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
-#users table td{font-size:13px;color:#354251;}
-#users table td, #users table th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	
+#users table, table.form-table{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
+#users table th, table.form-table th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
+#users table td, table.form-table td{font-size:13px;color:#354251;}
+table.form-table th{background-image: none;}
+table.form-table td, table.form-table th {border: 1px solid #354251;}
+#users table td, #users table th {white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	
 #users table tr:hover{background-color:#f9fafb}
-users table tr:hover td{color:#354251;cursor:default;}
-
+.form-table tr:hover{background-color:#f9fafb}
+users table tr:hover users table td{color:#354251;cursor:default;}
+.form-table tr:hover td{color:#354251;cursor:pointer;}
 
 .profile{
 	background-color: gainsboro;
@@ -245,7 +253,41 @@ users table tr:hover td{color:#354251;cursor:default;}
 	vertical-align: middle;
 }
 
-body{
-	background-color:white;
-	background-image: none;
+.wrap-form .pushme,  .form-table input{
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	padding: 7px 14px;
+	margin-bottom: 10px;
+	background-color: gainsboro;
+	text-decoration: none;
+}
+
+.wrap-form .pushme:hover {
+	background-color: white;
+}
+
+.wrap-form form{
+	margin-top: 20px;
+}
+
+table.form-table{
+		background-color: #e3e3e3;
+		line-height: 1;
+}
+
+.form-table input:hover {
+	color:#354251; 
+	background-color: white; 
+	cursor:pointer;
+}
+
+.fancybox-inner .form-table tr:hover td{color:#354251;cursor:default;}
+
+.navigation{
+	display: inline-block;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	padding: 7px 14px;
+	margin-bottom: 10px;
+	background-color: gainsboro;
 }
