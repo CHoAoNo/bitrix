@@ -260,6 +260,7 @@ users table tr:hover users table td{color:#354251;cursor:default;}
 	margin-bottom: 10px;
 	background-color: gainsboro;
 	text-decoration: none;
+	display: inline-block;
 }
 
 .wrap-form .pushme:hover {
@@ -290,4 +291,26 @@ table.form-table{
 	padding: 7px 14px;
 	margin-bottom: 10px;
 	background-color: gainsboro;
+}
+
+.notetext{
+	background-color: gainsboro;
+	margin: 10px 0;
+}
+
+.fancybox-inner{
+	width: 660px !important;
+}
+
+.fancybox-wrap{
+	top: 15px !important;
+}
+
+.form-note{
+	background-color: #74ef74;
+	display: inline-block;
+}
+
+.form-error{
+	background-color: red;
 }

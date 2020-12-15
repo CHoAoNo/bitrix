@@ -120,7 +120,7 @@ if (strlen($arResult["FORM_NOTE"]) > 0) ShowNote($arResult["FORM_NOTE"]);
 			<? 
 			} //endif ($SHOW_STATUS=="Y");
 			?>
-				<tr>
+				<tr class="pushme2">
 					<td>
 
 						<b><?=($arParams["USER_ID"]==$arRes["USER_ID"]) ? "<span class='form-result-id'>".$arRes["ID"]."</span>" : $arRes["ID"]?></b>
@@ -214,6 +214,7 @@ if (strlen($arResult["FORM_NOTE"]) > 0) ShowNote($arResult["FORM_NOTE"]);
 
 
 <script>
+// обработка кнопки создать
 $(function(){
 	$('.pushme').click(function(e){
 		getForm();
@@ -231,6 +232,90 @@ $(function(){
 function getForm(data){		
 	$.ajax({
 		url: 'form.php',
+		type: 'POST',
+		data: data,
+		success: function(data){
+		$.fancybox({content:data,helpers:{overlay:{locked: false}}});
+		$.fancybox.hideLoading();
+		}
+	});
+}
+</script>
+
+<script>
+// конвертер в дату js
+String.prototype.toDate = function(format)
+{
+  var normalized      = this.replace(/[^a-zA-Z0-9]/g, '-');
+  var normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
+  var formatItems     = normalizedFormat.split('-');
+  var dateItems       = normalized.split('-');
+
+  var monthIndex  = formatItems.indexOf("mm");
+  var dayIndex    = formatItems.indexOf("dd");
+  var yearIndex   = formatItems.indexOf("yyyy");
+  var hourIndex     = formatItems.indexOf("hh");
+  var minutesIndex  = formatItems.indexOf("ii");
+  var secondsIndex  = formatItems.indexOf("ss");
+
+  var today = new Date();
+
+  var year  = yearIndex>-1  ? dateItems[yearIndex]    : today.getFullYear();
+  var month = monthIndex>-1 ? dateItems[monthIndex]-1 : today.getMonth()-1;
+  var day   = dayIndex>-1   ? dateItems[dayIndex]     : today.getDate();
+
+  var hour    = hourIndex>-1      ? dateItems[hourIndex]    : today.getHours();
+  var minute  = minutesIndex>-1   ? dateItems[minutesIndex] : today.getMinutes();
+  var second  = secondsIndex>-1   ? dateItems[secondsIndex] : today.getSeconds();
+
+  return new Date(year,month,day,hour,minute,second);
+};
+</script>
+
+<script>
+// счетчик от переданной даты до текущей
+function timer(endTime) {
+  let delta = Math.floor((new Date()- endTime) / 1000);
+  let days = Math.floor(delta / 86400);
+  delta -= days * 86400;
+  let hours = Math.floor(delta / 3600) % 24;
+  delta -= hours * 3600;
+  let minutes = Math.floor(delta / 60) % 60;
+  delta -= minutes * 60;
+  let seconds = delta % 60;
+  // Итоговая дата в днях часах минутах секундах
+  let dateStr = `${days} д. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+	return dateStr;
+} 
+</script>
+
+<script>
+// обработка редактирования записи
+$(function(){
+	$('.pushme2').click(function(e){
+		resultId = $(this).find(".form-result-id").text();
+		getForm2();
+		e.preventDefault();
+	});
+	
+	$('body').on('submit','.popup-form-edit form',function(e){
+		let buf = document.getElementById('date-create').textContent;
+		let dateCreate = buf.toDate("dd.mm.yyyy hh:ii:ss");
+		let input = document.querySelector('input[name="form_text_ADDITIONAL_4"]');
+		let timeOfProcessing = timer(dateCreate);
+		input.setAttribute('value', timeOfProcessing);
+		e.preventDefault();
+		var dataForm = $(this).serialize()+'web_form_submit=Y';
+		$.fancybox.showLoading();
+		getForm2(dataForm);
+	});
+	
+});
+
+
+function getForm2(data){
+	$.ajax({
+		url: "edit.php?RESULT_ID="+resultId,
 		type: 'POST',
 		data: data,
 		success: function(data){
