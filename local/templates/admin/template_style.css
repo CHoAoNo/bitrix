@@ -253,7 +253,7 @@ users table tr:hover users table td{color:#354251;cursor:default;}
 	vertical-align: middle;
 }
 
-.wrap-form .pushme,  .form-table input{
+.wrap-form .pushme,  .form-table input, a.button{
 	border: solid 1px #ccc;
 	border-radius: 5px;
 	padding: 7px 14px;
@@ -261,10 +261,17 @@ users table tr:hover users table td{color:#354251;cursor:default;}
 	background-color: gainsboro;
 	text-decoration: none;
 	display: inline-block;
+	color: black;
+}
+
+a.button:hover {
+	background-color: white;
+	color: #535151;
 }
 
 .wrap-form .pushme:hover {
 	background-color: white;
+	color: #535151;
 }
 
 .wrap-form form{
@@ -313,4 +320,41 @@ table.form-table{
 
 .form-error{
 	background-color: red;
+}
+
+.wrap-rand-prod-list, .wrap-button{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.rand-prod-list{
+	width: 100%;
+	margin: 0 auto;
+	background-color: gainsboro;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.rand-prod-list .list-item {
+    margin: 20px 0;
+    width: 40%;
+		height: 350px;
+		border: 1px solid black;
+		text-align: center;
+}
+
+.rand-prod-list .list-item a {
+    display: inline-block;
+		margin-top: 15px;
+}
+
+.rand-prod-list .list-item a img.preview_picture {
+    display: block;
+    margin: 0 auto;
+}
+
+#test1{
+	position: fixed;
 }
