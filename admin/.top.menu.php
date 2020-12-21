@@ -1,8 +1,36 @@
 <?
 $aMenuLinks = Array(
 	Array(
+		"Начальная", 
+		"index.php", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Инфоблоки", 
+		"iblock/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Пользователи", 
+		"users/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
 		"Форма", 
-		"/admin/form/", 
+		"form/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Случайный продукт", 
+		"rand-product/", 
 		Array(), 
 		Array(), 
 		"" 
