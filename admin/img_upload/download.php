@@ -8,7 +8,7 @@ if ($USER->IsAuthorized()){
 	if(!empty($_POST)) {
 		echo CFile::GetPath($_GET["id"]);
 	}
-	// при прямом доступе через ссылку вида .../img-upload/download.php?id=71
+	// при прямом доступе через ссылку вида .../img_upload/download.php?id=71
 	else {
 		$href = CFile::GetPath($_GET["id"]);?>
 		<script>
