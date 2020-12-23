@@ -358,3 +358,14 @@ table.form-table{
 #test1{
 	position: fixed;
 }
+
+.wrap-center{
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+	padding: 20;
+}
+
+.wrap-center .form-error{
+	display: inline-block;
+}

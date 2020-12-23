@@ -34,6 +34,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Загрузка изображений", 
+		"/admin/img-upload/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
