@@ -30,14 +30,21 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Случайный продукт", 
-		"rand-product/", 
+		"rand_product/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Загрузка изображений", 
-		"/admin/img-upload/", 
+		"/admin/img_upload/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Новые пользователи", 
+		"/admin/user_new/", 
 		Array(), 
 		Array(), 
 		"" 
