@@ -22,6 +22,7 @@ function OnBeforeUserRegisterHandler($args){
 		$GLOBALS['APPLICATION']->ThrowException('Недопустимый домен почты'); 
 		return false;   
 	}
+	
 	// проверка на уникальность почты
 	if($ar = $res->Fetch())
 	{
@@ -37,18 +38,15 @@ function OnBeforeUserRegisterHandler($args){
 AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
 
 function OnAfterUserRegisterHandler($arFields){
-
-	$event = new CEvent;
-	$arSiteInfo = $event->GetSiteFieldsArray(SITE_ID);
 	
 	$backUrl = ($_REQUEST["backurl"]) ?: 'нет информации';
 	
-	// если регистрация успешна, то отпарвить письмо на #DEFAULT_EMAIL_FROM#
+	// если регистрация успешна, то отправить письмо (шаблон настроен на #DEFAULT_EMAIL_FROM#)
 	if($arFields["USER_ID"]>0)
 	{
 		Bitrix\Main\Mail\Event::sendImmediate( array(
 			"EVENT_NAME" => "MY_NEW_USER",
-			"LID" => $arSiteInfo['SITE_ID'],
+			"LID" => SITE_ID,
 			"C_FIELDS" => array(
 				"USER_ID"	=> $arFields['USER_ID'],
 				"DATE" 		=> date("d.m.Y H:i:s"),
@@ -59,5 +57,15 @@ function OnAfterUserRegisterHandler($arFields){
 		)); 
 	}
 	
+}
+
+
+// Отключение стандартного уведомления о регистрации пользователя с почтой в домене yandex.ru
+AddEventHandler("main", "OnBeforeEventAdd", "DoNotSendMail");
+function DoNotSendMail ($event, $lid, $arFields) {
+	// определяем ID заказа
+
+	if ($event == 'NEW_USER' && preg_match('/yandex.ru/', $arFields['EMAIL']) )
+		return false;
 }
 ?>
