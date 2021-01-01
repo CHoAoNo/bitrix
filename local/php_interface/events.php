@@ -57,6 +57,8 @@ function OnAfterUserRegisterHandler($arFields){
 		)); 
 	}
 	
+	// сброс кеша компонента регистрации последних 3х пользователей
+	CBitrixComponent::clearComponentCache('my.components:new_users.list');
 }
 
 
