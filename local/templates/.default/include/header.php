@@ -19,7 +19,8 @@ IncludeTemplateLangFile(__FILE__);
 		"PATH" => "/include/phone.php"
 	)
 );?></span>	<br/>	
-							<?=GetMessage('WORKING_TIME')?> <span class="workhours">ежедневно с 9-00 до 18-00</span>						
+							<?=GetMessage('WORKING_TIME')?> <span class="workhours">ежедневно с 9-00 до 18-00</span>
+							<? $APPLICATION->ShowViewContent('product'); ?>
 						</td>
 						<td style="width:232px">
 							<?$APPLICATION->IncludeComponent(
