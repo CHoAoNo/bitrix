@@ -83,10 +83,18 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
 	? $arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT']
 	: $arResult['NAME'];
 
-// отложенная функция для вывода названия товара
 $this->SetViewTarget('product'); ?>
 <span><b><?=$name?></b></span>
 <? $this->EndViewTarget();
+//$APPLICATION->AddViewContent('myContentBlockName', "<p>$name</p>");
+
+// отложенная функция для вывода названия товара
+function productName()
+{
+	global $APPLICATION;
+		return '<p><b>'.$APPLICATION->GetTitle(false).'</b></p>';
+}
+
 
 $haveOffers = !empty($arResult['OFFERS']);
 if ($haveOffers)

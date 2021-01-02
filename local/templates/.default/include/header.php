@@ -20,7 +20,9 @@ IncludeTemplateLangFile(__FILE__);
 	)
 );?></span>	<br/>	
 							<?=GetMessage('WORKING_TIME')?> <span class="workhours">ежедневно с 9-00 до 18-00</span>
-							<? $APPLICATION->ShowViewContent('product'); ?>
+							<? // 1 вариант $APPLICATION->ShowViewContent('product'); ?>
+							<? // 2 вариант $APPLICATION->ShowViewContent('myContentBlockName'); ?>
+							<? $APPLICATION->AddBufferContent('productName');?>
 						</td>
 						<td style="width:232px">
 							<?$APPLICATION->IncludeComponent(
