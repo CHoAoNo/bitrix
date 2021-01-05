@@ -21,7 +21,7 @@ if (CModule::IncludeModule('highloadblock')) {
 	$arElementFields = array(
 		'UF_USER_ID' => $USER_ID,
 		'UF_USER_NAME' => $_POST['name'],
-		'UF_USER_PHONE' => $_POST['phone'],
+		'UF_USER_PHONE' => preg_replace("/[^0-9]/", '', $_POST['phone']),
 		'UF_PRODUCT_NAME' => $_POST['productName'],
 		'UF_PRODUCT_CODE' => $_POST['productID'],
 		'UF_PRODUCT_PAGE' => $_POST['productRef'],

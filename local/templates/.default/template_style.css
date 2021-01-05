@@ -245,14 +245,7 @@ color: #0073A3;
 }
 .nv_topnav>ul li a span{
 	display:block;
-	padding:0 28px;
-	text-shadow:0 1px 1px #123650;
-	border-left:1px solid #4b97c8;
-	border-right:1px solid #2674a8;
-}
-.nv_topnav>ul li a span{
-	display:block;
-	padding:0 28px !important;
+	padding:0 20px !important;
 	text-shadow:0 1px 1px #123650;
 	border-left:1px solid #4b97c8;
 	border-right:1px solid #2674a8;
@@ -1879,3 +1872,15 @@ color: #0073A3;
 }
 
 /*================================================== pagination =========================================*/
+
+
+table.low-price{
+	text-align: center;
+	font-size: 14px;
+	border-collapse: collapse;
+}
+
+table.low-price th, table.low-price td{
+	border: 1px solid black;
+	padding: 3px 3px;
+}
