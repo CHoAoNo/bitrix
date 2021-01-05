@@ -1,5 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->AddHeadScript("/local/templates/admin/js/jquery.fancybox.pack.js");
+$APPLICATION->SetAdditionalCSS("/local/templates/admin/include/fancybox/jquery.fancybox.css");
 $APPLICATION->SetTitle("Продукция");
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 

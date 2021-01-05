@@ -179,7 +179,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 			?>
 			<div class="row">
 				<div class="col-xs-12">
-					<h1 class="bx-title"><?=$name?></h1>
+					<h1 id="product-name" data-id="<?=$arResult['PROPERTIES']['VENDOR_CODE']['VALUE']?>" class="bx-title"><?=$name?></h1>
 				</div>
 			</div>
 			<?
@@ -1268,6 +1268,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 				?>
 			</div>
 		</div>
+		<a class="popup" href="#inline">Хочу дешевле</a>
 	</div>
 	<!--Small Card-->
 	<div class="product-item-detail-short-card-fixed hidden-xs" id="<?=$itemIds['SMALL_CARD_PANEL_ID']?>">
@@ -1806,6 +1807,50 @@ if ($arParams['DISPLAY_COMPARE'])
 	);
 }
 ?>
+<?
+//Получение телефона авторизованного пользователя
+global $USER;
+if ( $USER->IsAuthorized() ) { 	
+  $rsUser = CUser::GetByID($USER->GetID()); 
+  $arUser = $rsUser->Fetch();
+	$UserPhone = $arUser["PERSONAL_PHONE"] ? $arUser["PERSONAL_PHONE"] : $arUser["PERSONAL_MOBILE"];
+}
+?>
+<div id="inline" style="width: 500px; display: none;">
+<form name="" action="" method="POST"><table class="form-table">
+		<thead>
+			<tr>
+				<th colspan="2"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Фамилия, имя, отчество<font color="red"><span class="form-required starrequired">*</span></font></td>
+				<td><input type="text" class="inputtext" name="name" value="<?=$USER->GetFullName();?>" size="42" maxlength="75" required="required"></td>
+			</tr>
+			<tr>
+				<td>Телефон<font color="red"><span class="form-required starrequired">*</span></font></td>
+				<td><input type="text" class="inputtext" name="phone" value="<?=$UserPhone;?>" size="42" maxlength="25" required="required"></td>
+			</tr>
+			<tr>
+				<td>Желаемая цена<font color="red"><span class="form-required starrequired">*</span></font></td>
+				<<td><input type="number" name="price" size="8" required="required"></td>
+			</tr>
+		</tbody>
+		<tfoot>
+		<tr>
+			<th colspan="2">
+			<br>
+			<input type="submit" name="submit" value="Отравить">
+			</th>
+		</tr>
+		</tfoot>
+	</table>
+	<br>
+	<p><font color="red"><span class="form-required starrequired">*</span></font> - Поля, обязательные для заполнения</p>
+</form>
+</div>
+		
 <script>
 	BX.message({
 		ECONOMY_INFO_MESSAGE: '<?=GetMessageJS('CT_BCE_CATALOG_ECONOMY_INFO2')?>',
@@ -1829,6 +1874,51 @@ if ($arParams['DISPLAY_COMPARE'])
 	});
 
 	var <?=$obName?> = new JCCatalogElement(<?=CUtil::PhpToJSObject($jsParams, false, true)?>);
+</script>
+
+<script>
+$(document).ready(function() {
+	$(".popup").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+</script>
+
+<script>
+data = document.getElementById('product-name');
+productName = data.textContent;
+productID = data.dataset.id;
+productRef = window.location.href;
+
+
+$('body').on('submit','#inline form',function(e){
+	e.preventDefault();
+	var frmData = $(this).serializeArray();
+	frmData.push({name: "productName", value: productName});
+	frmData.push({name: "productID", value: productID});
+	frmData.push({name: "productRef", value: productRef});
+
+	$.fancybox.showLoading(); //отображаем загрузчик Fancybox
+	
+	$.ajax({
+		url: 'add_low_price.php',
+		type: 'POST',
+		data: frmData,
+		success: function(data){
+		$.fancybox({content:data,helpers:{overlay:{locked: false}}});
+		$.fancybox.hideLoading();
+		}
+	});
+});
+
 </script>
 <?
 unset($actualItem, $itemIds, $jsParams);
