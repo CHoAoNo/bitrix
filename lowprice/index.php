@@ -59,7 +59,7 @@ if (CModule::IncludeModule('highloadblock')) {
 			<th>Комментарий</th>
 		</tr>
 	</thead>
-	
+	<tbody>
 <?
 //Получение списка:
 if (CModule::IncludeModule('highloadblock')) {
@@ -71,20 +71,19 @@ if (CModule::IncludeModule('highloadblock')) {
   
 	while ($arItem = $rsData->Fetch()) {
 ?>
-		<tbody>
-			<tr>
-				<td><?=$arItem['UF_PRODUCT_CODE']?></td>
-				<td><?=$arItem['UF_PRODUCT_NAME']?></td>
-				<td><a href="<?=$arItem["UF_PRODUCT_PAGE"]?>">товар</a></td>
-				<td><?=$arItem['UF_REQUEST_DATE']?></td>
-				<td><?=$arItem['UF_STATUS']? "обработано" : "не обработано"?></td>
-				<td><?=$arItem['UF_COMMENT']?></td>
-			</tr>
-		</tbody>
+		<tr>
+			<td><?=$arItem['UF_PRODUCT_CODE']?></td>
+			<td><?=$arItem['UF_PRODUCT_NAME']?></td>
+			<td><a href="<?=$arItem["UF_PRODUCT_PAGE"]?>">товар</a></td>
+			<td><?=$arItem['UF_REQUEST_DATE']?></td>
+			<td><?=$arItem['UF_STATUS']? "обработано" : "не обработано"?></td>
+			<td><?=$arItem['UF_COMMENT']?></td>
+		</tr>
 <? 
 	}
 }
 ?>
+	</tbody>
 </table>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
