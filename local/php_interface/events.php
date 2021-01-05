@@ -23,8 +23,9 @@ function OnBeforeUserRegisterHandler($args){
 		return false;   
 	}
 	
+	$ar = $res->Fetch();
 	// проверка на уникальность почты
-	if($ar = $res->Fetch())
+	if($ar && $ar['ID']!=$args['ID'])
 	{
 		$GLOBALS['APPLICATION']->ThrowException('Недопустимая почта'); 
 		return false;
