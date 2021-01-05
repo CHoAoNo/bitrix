@@ -1826,15 +1826,15 @@ if ( $USER->IsAuthorized() ) {
 		<tbody>
 			<tr>
 				<td>Фамилия, имя, отчество<font color="red"><span class="form-required starrequired">*</span></font></td>
-				<td><input type="text" class="inputtext" name="name" value="<?=$USER->GetFullName();?>" size="42" maxlength="75" required="required"></td>
+				<td><input type="text" class="inputtext" name="name" value="<?=$USER->GetFullName();?>" size="42" minlength="5" maxlength="70" required="required"></td>
 			</tr>
 			<tr>
 				<td>Телефон<font color="red"><span class="form-required starrequired">*</span></font></td>
-				<td><input type="text" class="inputtext" name="phone" value="<?=$UserPhone;?>" size="42" maxlength="25" required="required"></td>
+				<td><input type="text" class="inputtext" name="phone" value="<?=$UserPhone;?>" size="42" minlength="5" maxlength="25" required="required"></td>
 			</tr>
 			<tr>
 				<td>Желаемая цена<font color="red"><span class="form-required starrequired">*</span></font></td>
-				<<td><input type="number" name="price" size="8" required="required"></td>
+				<td><input type="number" name="price" size="10" step="0.01" min=0 max="9999999" required="required"></td>
 			</tr>
 		</tbody>
 		<tfoot>
