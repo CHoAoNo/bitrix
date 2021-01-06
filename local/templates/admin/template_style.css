@@ -167,29 +167,12 @@ margin-top: 20px;
 }
 
 #users input, 
-#users button,
-.wrap-center-2 button,
-.filters-wrap .search {
+#users button
+{
 	border: solid 1px #ccc;
 	border-radius: 5px;
 	padding: 7px 14px;
 	margin-bottom: 10px;
-}
-
-.filters-wrap .search {
-	float: left;
-}
-
-.filters-wrap .filter-status {
-	margin-left: 20px;
-}
-
-.wrap-center-2 button {
-	width: 125px;
-}
-
-.filter-date{
-	font-size: 12px;
 }
 
 #users input.search{
@@ -241,7 +224,7 @@ table.allusers{
 #users table td, table.form-table td{font-size:13px;color:#354251;}
 table.form-table th{background-image: none;}
 table.form-table td, table.form-table th {border: 1px solid #354251;}
-#users table td, #users table th, table.low-price td, table.low-price th {white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	
+#users table td, #users table th {white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	
 #users table tr:hover{background-color:#f9fafb}
 .form-table tr:hover{background-color:#f9fafb}
 users table tr:hover users table td{color:#354251;cursor:default;}
@@ -378,76 +361,11 @@ table.form-table{
 
 .wrap-center{
 	width: 80%;
-	margin: 0 auto 50px;
+	margin: 0 auto;
 	background-color: white;
-	padding: 20px;
+	padding: 20;
 }
 
 .wrap-center .form-error{
 	display: inline-block;
-}
-
-.wrap-center-2{
-	width: 80%;
-	margin: 0 auto 50px;
-}
-
-.wrap-center-2 h1.title{
-	background-color: transparent;
-	color: #e3e3e3;
-	margin: 10px 0 10px;
-}
-
-table.low-price thead{
-	height: 40px;
-}
-
-table.low-price th.sort:hover{
-	cursor: pointer;
-	background-color: #53677f;
-}
-
-table.low-price .sort:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  content:"";
-  position: relative;
-  top:-10px;
-  right:-5px;
-}
-table.low-price .sort.asc:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #fff;
-  content:"";
-  position: relative;
-  top:11px;
-  right:-5px;
-}
-table.low-price .sort.desc:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #fff;
-  content:"";
-  position: relative;
-  top:-9px;
-  right:-5px;
-}
-
-.wrap-center-2 .pagination{
-	margin-top: 10px;
-	
-}
-
-.wrap-center-2 .pagination li {
-  display:inline-block;
-  padding:5px;
-	background-color: gainsboro;
 }
