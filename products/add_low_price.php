@@ -23,7 +23,8 @@ if (CModule::IncludeModule('highloadblock')) {
 		'UF_USER_NAME' => $_POST['name'],
 		'UF_USER_PHONE' => preg_replace("/[^0-9]/", '', $_POST['phone']),
 		'UF_PRODUCT_NAME' => $_POST['productName'],
-		'UF_PRODUCT_CODE' => $_POST['productID'],
+		'UF_PRODUCT_ID' => $_POST['productID'],
+		'UF_PRODUCT_CODE' => $_POST['productCode'],
 		'UF_PRODUCT_PAGE' => $_POST['productRef'],
 		'UF_REQUEST_PRICE' => $_POST['price'],
 		'UF_REQUEST_DATE' => new \Bitrix\Main\Type\DateTime

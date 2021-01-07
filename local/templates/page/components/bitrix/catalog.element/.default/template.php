@@ -179,7 +179,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 			?>
 			<div class="row">
 				<div class="col-xs-12">
-					<h1 id="product-name" data-code="<?=$arResult['PROPERTIES']['VENDOR_CODE']['VALUE']?>" class="bx-title"><?=$name?></h1>
+					<h1 id="product-name" data-code="<?=$arResult['PROPERTIES']['VENDOR_CODE']['VALUE']?>"  data-id="<?=$arResult['ORIGINAL_PARAMETERS']['ELEMENT_ID']?>" class="bx-title"><?=$name?></h1>
 				</div>
 			</div>
 			<?
@@ -1895,7 +1895,8 @@ $(document).ready(function() {
 <script>
 data = document.getElementById('product-name');
 productName = data.textContent;
-productID = data.dataset.code;
+productCode = data.dataset.code;
+productID = data.dataset.id;
 productRef = window.location.href;
 
 
@@ -1903,6 +1904,7 @@ $('body').on('submit','#inline form',function(e){
 	e.preventDefault();
 	var frmData = $(this).serializeArray();
 	frmData.push({name: "productName", value: productName});
+	frmData.push({name: "productCode", value: productCode});
 	frmData.push({name: "productID", value: productID});
 	frmData.push({name: "productRef", value: productRef});
 
