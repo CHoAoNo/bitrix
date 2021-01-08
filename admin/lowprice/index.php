@@ -1,21 +1,27 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->AddHeadScript("/local/templates/admin/js/jquery.fancybox.pack.js");
+$APPLICATION->SetAdditionalCSS("/local/templates/admin/include/fancybox/jquery.fancybox.css");
 $APPLICATION->SetTitle("Снижение цены");
 ?>
 
+<?
+// id Highload-блока
+const MY_HL_BLOCK_ID = 2;
 
-<?//Подготовка Highload-блока
 if (CModule::IncludeModule('highloadblock')) {
-	$arHLBlock = Bitrix\Highloadblock\HighloadBlockTable::getById(2)->fetch();
+	$arHLBlock = Bitrix\Highloadblock\HighloadBlockTable::getById(MY_HL_BLOCK_ID)->fetch();
 	$obEntity = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($arHLBlock);
 	$strEntityDataClass = $obEntity->getDataClass();
 }
 ?>
+<div class="overlay"></div>
 <div class="wrap-center-2" id="requests-list">
+
 	<h1 class="title">Заявки на снижение цены</h1>
 	
 	<div class="filters-wrap">
-	
+
 		<input class="search" placeholder="Поиск" />
 	
 		<div class="filter-wrap filter-status">
@@ -37,7 +43,7 @@ if (CModule::IncludeModule('highloadblock')) {
 	
 	</div>
 	
-
+	
 	<table class="form-table low-price">
 		<thead>
 			<tr>
@@ -47,18 +53,19 @@ if (CModule::IncludeModule('highloadblock')) {
 				<th class="sort" data-sort="status">&#9661;&#9651; Состояние заявки</th>
 			</tr>
 		</thead>
+		
 		<tbody class="list">
 <?
 //Получение списка:
 if (CModule::IncludeModule('highloadblock')) {
   $rsData = $strEntityDataClass::getList(array(
-		'select' => array('UF_REQUEST_DATE','UF_PRODUCT_CODE','UF_PRODUCT_NAME','UF_STATUS'),
+		'select' => array('ID','UF_REQUEST_DATE','UF_PRODUCT_CODE','UF_PRODUCT_NAME','UF_STATUS'),
 		'order' => array('ID' => 'ASC')
   ));
   
 	while ($arItem = $rsData->Fetch()) {
 ?>
-			<tr>
+			<tr class="ajax-detail" data-id="<?=$arItem['ID']?>">
 				<td class='request_date'><?=$arItem['UF_REQUEST_DATE']?></td>
 				<td class='product_code'><?=$arItem['UF_PRODUCT_CODE']?></td>
 				<td class='product_name'><?=$arItem['UF_PRODUCT_NAME']?></td>
@@ -72,6 +79,34 @@ if (CModule::IncludeModule('highloadblock')) {
 	</table>
 	<ul class="pagination"></ul>
 </div>
+
+<script>
+// просмотр детальной информации по заявке
+$('.ajax-detail').on('click', function(){
+	showDetail($(this));
+});
+
+function showDetail(self){
+	requestID = self.attr('data-id');
+	
+	$.ajax({
+		beforeSend: function() {
+			$('.overlay').fadeIn();
+		},
+		complete: function() {
+			$('.overlay').fadeOut();
+		},
+		url: 'detail.php',
+		type: 'POST',
+		data: {'ID': requestID
+		},
+		success: function(data){
+			$.fancybox({content:data,helpers:{overlay:{locked: false}}});
+			$.fancybox.hideLoading();
+		}
+	});
+};
+</script>
 
 <script>
 // скрипт для фильтрации, сортировки (при клике на заголовки таблицы) 
@@ -151,6 +186,39 @@ $('.filter-status-0').on('click',function(){
 	filterDateStatus();
 });
 
+</script>
+
+<script>
+// 
+$(function(){
+	$('body').on('submit','form',function(e){
+		e.preventDefault();
+		
+		let form = document.forms.my; 
+		// id заявки
+		let requestID = form.elements.requestId.value; 
+		
+		let data = $(this).serialize();
+		
+		$.ajax({
+			beforeSend: function() {
+				$('.overlay2').fadeIn();
+			},
+			complete: function() {
+				$('.overlay2').fadeOut();
+			},
+			url: 'update.php',
+			type: 'POST',
+			data: data,
+			success: function(data){
+				$.fancybox({content:data,helpers:{overlay:{locked: false}}});
+				$.fancybox.hideLoading();
+				// изменить текст на обработано
+				document.querySelector("tr[data-id='" + requestID + "'] td.status").textContent = 'обработано';
+			}
+		});
+	});
+});
 </script>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

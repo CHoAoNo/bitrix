@@ -1884,3 +1884,7 @@ table.low-price th, table.low-price td{
 	border: 1px solid black;
 	padding: 3px 3px;
 }
+
+.fancybox-wrap {
+	overflow: visible !important;
+}

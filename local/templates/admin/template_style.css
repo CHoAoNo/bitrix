@@ -169,7 +169,8 @@ margin-top: 20px;
 #users input, 
 #users button,
 .wrap-center-2 button,
-.filters-wrap .search {
+.filters-wrap .search,
+.def-button{
 	border: solid 1px #ccc;
 	border-radius: 5px;
 	padding: 7px 14px;
@@ -270,7 +271,7 @@ users table tr:hover users table td{color:#354251;cursor:default;}
 	vertical-align: middle;
 }
 
-.wrap-form .pushme,  .form-table input, a.button{
+.wrap-form .pushme,  .form-table input, a.button, .def-button{
 	border: solid 1px #ccc;
 	border-radius: 5px;
 	padding: 7px 14px;
@@ -300,7 +301,8 @@ table.form-table{
 		line-height: 1;
 }
 
-.form-table input:hover {
+.form-table input:hover,
+.def-button:hover{
 	color:#354251; 
 	background-color: white; 
 	cursor:pointer;
@@ -324,10 +326,6 @@ table.form-table{
 
 .fancybox-inner{
 	width: 660px !important;
-}
-
-.fancybox-wrap{
-	top: 15px !important;
 }
 
 .form-note{
@@ -450,4 +448,25 @@ table.low-price .sort.desc:after {
   display:inline-block;
   padding:5px;
 	background-color: gainsboro;
+}
+
+.detail-request-price table.low-price td{
+	padding: 6px 3px;
+}
+
+.detail-request-price form input{
+	position: relative;
+	top: -15px;
+	margin: 0 20px;
+}
+
+.overlay, .overlay2 {
+  display: none;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.65);
 }
