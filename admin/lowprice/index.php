@@ -16,13 +16,14 @@ if (CModule::IncludeModule('highloadblock')) {
 }
 ?>
 <div class="overlay"></div>
-<div class="wrap-center-2" id="requests-list">
+<div class="wrap-center-2" id="filtered-list">
 
 	<h1 class="title">Заявки на снижение цены</h1>
 	
 	<div class="filters-wrap">
 
 		<input class="search" placeholder="Поиск" />
+		<button class="def-button export">Экспорт XML</button>
 	
 		<div class="filter-wrap filter-status">
 			<p>Фильтр по статусу</p>
@@ -47,6 +48,7 @@ if (CModule::IncludeModule('highloadblock')) {
 	<table class="form-table low-price">
 		<thead>
 			<tr>
+				<th class="sort" data-sort="id">&#9661;&#9651; ID</th>
 				<th class="sort" data-sort="request_date">&#9661;&#9651; Дата заявки</th>
 				<th class="sort" data-sort="product_code">&#9661;&#9651; Артикул товара</th>
 				<th class="sort" data-sort="product_name">&#9661;&#9651; Название товара</th>
@@ -59,13 +61,16 @@ if (CModule::IncludeModule('highloadblock')) {
 //Получение списка:
 if (CModule::IncludeModule('highloadblock')) {
   $rsData = $strEntityDataClass::getList(array(
-		'select' => array('ID','UF_REQUEST_DATE','UF_PRODUCT_CODE','UF_PRODUCT_NAME','UF_STATUS'),
+		'select' => array('ID','UF_REQUEST_DATE','UF_PRODUCT_CODE','UF_PRODUCT_NAME','UF_STATUS','UF_USER_ID','UF_PRODUCT_ID'),
 		'order' => array('ID' => 'ASC')
   ));
   
 	while ($arItem = $rsData->Fetch()) {
 ?>
 			<tr class="ajax-detail" data-id="<?=$arItem['ID']?>">
+				<td class='id'><?=$arItem['ID']?></td>
+				<td class='user_id hiden'><?=$arItem['UF_USER_ID']?></td>
+				<td class='product_id hiden'><?=$arItem['UF_PRODUCT_ID']?></td>
 				<td class='request_date'><?=$arItem['UF_REQUEST_DATE']?></td>
 				<td class='product_code'><?=$arItem['UF_PRODUCT_CODE']?></td>
 				<td class='product_name'><?=$arItem['UF_PRODUCT_NAME']?></td>
@@ -111,21 +116,54 @@ function showDetail(self){
 <script>
 // скрипт для фильтрации, сортировки (при клике на заголовки таблицы) 
 // и постраничной навигации с помощью плагина List.js
+// и экспорта в XML отфильтрованных данных
 
-// параметры 
+// для экспорта в XML формируется 3 списка id: заявок, пользователей, товаров;
+// чтобы выбрать необходимые данные тремя запросами
+
+// параметры List.js
 var options = {
-	valueNames: [ 'request_date', 'product_code', 'product_name', 'status'],
+	valueNames: [ 'id', 'user_id', 'product_id', 'request_date', 'product_code', 'product_name', 'status'],
 	page: 20,
   pagination: true
 };
-var requestsList = new List('requests-list', options);
+var filteredList = new List('filtered-list', options);
+
+// список id заявок
+var listRequests = new Array();
+
+// список id пользователей по умолчанию (все имеющиеся в списке)
+var listUsersDefault = new Set();
+users = document.querySelectorAll('.user_id');
+users.forEach(function(userItem) {
+  listUsersDefault.add(userItem.textContent);
+});
+
+// список id товаров (все имеющиеся в списке)
+var listProductsDefault = new Set();
+products = document.querySelectorAll('.product_id');
+products.forEach(function(productItem) {
+  listProductsDefault.add(productItem.textContent);
+});
+
+// список id пользователей для заполнения при фильтрации
+var listUsers = new Set();
+// список id товаров для заполнения при фильтрации
+var listProducts = new Set();
 
 // обертка над функцией фильтрации (по дате и статусу)
 function filterDateStatus(){
+	// сбросить списки id
+	listRequests.length = 0;
+	listUsers.clear();
+	listProducts.clear();
 	// сбросить старый фильтр
-	requestsList.filter();
+	filteredList.filter();
 	
-	//получени дат
+	// выбраный статус заявки
+	var n = document.getElementById("status").options.selectedIndex;
+	
+	//получение дат
 	let fromDate = new Date(document.getElementById('from-date').value);
 	let toDate = new Date(document.getElementById('to-date').value);
 	
@@ -137,10 +175,14 @@ function filterDateStatus(){
 	if(toDate == 'Invalid Date')
 		toDate = Date.now();
 	
+	// фильтры не установлены
+	if(fromDate == 'Invalid Date' && toDate == 'Invalid Date' && n == 0)
+		return;
+	
+		
+	
 	// функция фильтрации
-  requestsList.filter(function(item) {	
-		// выбраный статус
-		var n = document.getElementById("status").options.selectedIndex;
+  filteredList.filter(function(item) {	
 		
 		// дата перебираемого элемента
 		year = item.values().request_date.substring(6, 10);
@@ -149,16 +191,33 @@ function filterDateStatus(){
 		requestDate = new Date(`${year}-${month}-${day}`);
 		
 		// фильтр только по дате
-		if(n == 0)
-			return (requestDate>=fromDate && requestDate<=toDate);
+		if(n == 0 && requestDate>=fromDate && requestDate<=toDate){
+			// заполнение списков id
+			listRequests.push(item.values().id);
+			listUsers.add(item.values().user_id);
+			listProducts.add(item.values().product_id);
+			return true;
+		}
+			
 		
 		// фильтр по дате со статусом 'обработано'
-		if(n == 1)
-			return (requestDate>=fromDate && requestDate<=toDate && item.values().status == 'обработано');
+		if(n == 1 && requestDate>=fromDate && requestDate<=toDate && item.values().status == 'обработано'){
+			// заполнение списков id
+			listRequests.push(item.values().id);
+			listUsers.add(item.values().user_id);
+			listProducts.add(item.values().product_id);
+			return true;
+		}
 		
 		// фильтр по дате со статусом 'не обработано'
-		if(n == 2)
-			return (requestDate>=fromDate && requestDate<=toDate && item.values().status == 'не обработано');
+		if(n == 2 && requestDate>=fromDate && requestDate<=toDate && item.values().status == 'не обработано'){
+			// заполнение списков id
+			listRequests.push(item.values().id);
+			listUsers.add(item.values().user_id);
+			listProducts.add(item.values().product_id);
+			return true;
+		}
+
 	});
    
 }
@@ -173,7 +232,7 @@ $('#to-date').on('change', function(){
 		filterDateStatus();	
 });
 
-// запуск фильтрации при выборе статуса для фильтрации
+// запуск фильтрации при выборе статуса заявки для фильтрации
 $('.filter-status-reset').on('click',function(){
 	filterDateStatus();
 });
@@ -186,10 +245,45 @@ $('.filter-status-0').on('click',function(){
 	filterDateStatus();
 });
 
+
+// экспорт в XML
+$('.export').on('click', function(){
+	
+	// если происходит экспорт в XML неотфильтрованных заявок, 
+	// то использовать списки id по умолчанию
+	if(listRequests.length == 0){
+		listUsers = listUsersDefault;
+		listProducts = listProductsDefault;
+	}
+		
+	$.ajax({
+		beforeSend: function() {
+			$('.overlay').fadeIn();
+		},
+		complete: function() {
+			$('.overlay').fadeOut();
+		},
+		url: 'exportXml.php',
+		type: 'POST',
+		data: {	
+			listRequests: listRequests, 
+			listUsers: Array.from(listUsers),
+			listProducts: Array.from(listProducts)
+		},
+		success: function(data){
+			var hiddenElement = document.createElement('a');
+			hiddenElement.href = 'data:text/xml,' + data;
+			hiddenElement.target = '_blank';
+			hiddenElement.download = 'export.xml';
+			hiddenElement.click();
+		}
+	});
+	
+});
 </script>
 
 <script>
-// 
+// обработка заявки
 $(function(){
 	$('body').on('submit','form',function(e){
 		e.preventDefault();
