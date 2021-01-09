@@ -32,17 +32,17 @@ if (CModule::IncludeModule('highloadblock')) {
 		
 		// получение товара из инфоблока, для вывода изображения
 		if(CModule::IncludeModule("iblock")) {
-			$res = CIBlockElement::GetByID($arItem['UF_PRODUCT_ID']);
-			$product = $res->GetNext();
+			$rs = CIBlockElement::GetList(
+			Array(),
+			['IBLOCK_ID' => 8, 'ID' => $arItem['UF_PRODUCT_ID']],
+			false, false,
+			['ID', 'IBLOCK_ID', 'PREVIEW_PICTURE', 'PROPERTY_PRICE']
+			);
+
+			$product = $rs->Fetch();
+			
 		}
 
-		// получение цены товара
-		$db_props = CIBlockElement::GetProperty($PRODUCT_IBLOCK_ID, $arItem['UF_PRODUCT_ID'], array("sort" => "asc"), Array("CODE"=>"PRICE"));
-		if($ar_props = $db_props->Fetch())
-			$price = $ar_props["VALUE"];
-		else
-			$price = '';
-			
 
 ?>
 		<table class="form-table low-price">
@@ -58,7 +58,7 @@ if (CModule::IncludeModule('highloadblock')) {
 			<tr><td>Фото товара:</td><td><?if($product["PREVIEW_PICTURE"]):?><img height="100" src="<?=CFile::GetPath($product["PREVIEW_PICTURE"])?>">
 			<?endif;?></td></tr>
 			<tr><td>Желаемая цена:</td><td><?=$arItem['UF_REQUEST_PRICE']?></td></tr>
-			<tr><td>Актуальная цена:</td><td><?=$price?></td></tr>
+			<tr><td>Актуальная цена:</td><td><?=$product['PROPERTY_PRICE_VALUE']?></td></tr>
 			<?if($arItem['UF_STATUS']):?>
 			<tr><td>Комментарий:</td><td> <?=$arItem['UF_COMMENT']?></td></tr>
 			<?endif;?>
